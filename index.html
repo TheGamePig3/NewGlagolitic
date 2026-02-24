@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NewGlagOnline</title>
+
+  <style>
+    body {
+  background: #fdf5d9;
+  color: #4f4f4f;
+  font-family: sans-serif;
+  text-align: center;
+  margin-top: 40px;
+}
+
+textarea {
+  width: 80%;
+  height: 300px;
+  font-size: 24px;
+  padding: 10px;
+  background: #fd5d9;
+  color: #000;
+  border: 1px solid #555;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+  </style>
+
+  
+</head>
+<body>
+  <h1>нуѷь ґлѣґәлитик онлѧн</h1>
+<h4>f u wigston college ill make my own damn keyboard</h4>
+<textarea id="box" autofocus></textarea>
+<br><br>
+<button onclick="copyText()">Copy to Clipboard</button>
+
+  <script>
+    const normal = {
+  "q": "ѣ",
+  "w": "ӕ",
+  "e": "ѧ",
+  "r": "э",
+  "t": "у",
+  "y": "ѵ",
+  "u": "ә",
+  "i": "о",
+  "o": "ѡ",
+  "p": "и",
+  "[": "ð",
+  "]": "ѷ",
+  "#": "ѿ",
+  "a": "т",
+  "s": "п",
+  "d": "ф",
+  "f": "ш",
+  "g": "к",
+  "h": "ч",
+  "j": "с",
+  "k": "н",
+  "l": "м",
+  ";": "р",
+  "'": "л",
+  "z": "д",
+  "x": "б",
+  "c": "в",
+  "v": "ж",
+  "b": "ґ",
+  "n": "ђ",
+  "m": "ӡ",
+  ",": "ь",
+  ".": ".",
+  "/": "·",
+  "`": "й",
+
+
+};
+
+const shift = {
+  "q": "Ѣ",
+  "w": "Ӕ",
+  "e": "Ѧ",
+  "r": "Э",
+  "t": "У",
+  "y": "Ѵ",
+  "u": "Ә",
+  "i": "О",
+  "o": "Ѡ",
+  "p": "И",
+  "[": "Ð",
+  "]": "Ѷ",
+  "#": "Ѿ",
+  "a": "Т",
+  "s": "П",
+  "d": "Ф",
+  "f": "Ш",
+  "g": "К",
+  "h": "Ч",
+  "j": "С",
+  "k": "Н",
+  "l": "М",
+  ";": "Р",
+  "'": "Л",
+  "z": "Д",
+  "x": "Б",
+  "c": "В",
+  "v": "Ж",
+  "b": "Ґ",
+  "n": "Ђ",
+  "m": "Ӡ",
+  ",": "Ь",
+  ".": ".",
+  "/": "·",
+  "¬": "Й",
+};
+
+const alt = {
+  "a": "ц",
+  "g": "ѯ",
+  "k": "ӈ",
+  "p": "ӥ",
+  "b": "ѓ",
+  "w": "ă",
+  "r": "ӭ",
+  "t": "ø",
+  "y": "ӥ",
+  "o": "ѫ",
+  "[": "þ",
+  "s": "ѱ",
+  "q": "ї",
+};
+
+const textarea = document.getElementById("box");
+
+textarea.addEventListener("keydown", function(e) {
+
+  let key = e.key.toLowerCase();
+  let output = null;
+
+  if (e.altKey && alt[key]) {
+    output = alt[key];
+  } else if (e.shiftKey && shift[key]) {
+    output = shift[key];
+  } else if (normal[key]) {
+    output = normal[key];
+  }
+
+  if (output) {
+    e.preventDefault();
+    insertText(output);
+  }
+
+});
+
+function insertText(text) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  textarea.value =
+    textarea.value.substring(0, start) +
+    text +
+    textarea.value.substring(end);
+  textarea.selectionStart = textarea.selectionEnd = start + text.length;
+}
+
+function copyText() {
+  textarea.select();
+  document.execCommand("copy");
+}
+  </script>
+</body>
+</html>
